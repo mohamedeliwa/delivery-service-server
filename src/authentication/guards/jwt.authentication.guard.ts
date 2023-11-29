@@ -8,11 +8,13 @@ import { Reflector } from '@nestjs/core';
 import { JwtService } from '@nestjs/jwt';
 import { Request } from 'express';
 import { IS_PUBLIC_KEY } from '../decorators/public.decorator';
+import { UsersService } from 'src/users/services/users.service';
 
 @Injectable()
 export class JwtAuthenticationGuard implements CanActivate {
   constructor(
     private jwtService: JwtService,
+    private usersService: UsersService,
     private reflector: Reflector,
   ) {}
 
@@ -35,7 +37,7 @@ export class JwtAuthenticationGuard implements CanActivate {
         secret: 'JWT-Secret',
       });
 
-      request['user'] = payload;
+      request['user'] = this.usersService.findOne(payload.sub);
     } catch {
       throw new UnauthorizedException();
     }
