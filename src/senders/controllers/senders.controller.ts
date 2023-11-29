@@ -7,9 +7,10 @@ import {
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
-import { Sender, SendersService } from '../services/senders.service';
+import { SendersService } from '../services/senders.service';
 import SenderParamsDto from '../dtos/sender.params.dto';
 import SenderLoginDto from '../dtos/sender.login.dto';
+import Sender from '../schemas/sender.schema';
 
 @UsePipes(
   new ValidationPipe({

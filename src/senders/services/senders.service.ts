@@ -1,25 +1,14 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import SenderLoginDto from '../dtos/sender.login.dto';
-
-export interface Sender {
-  id: number;
-  name: string;
-  password: string;
-  role: 'sender';
-}
+import Sender from '../schemas/sender.schema';
+import SenderDB from '../schemas/sender.db';
 
 @Injectable()
 export class SendersService {
   /**
    * hardcoded senders database
    */
-  private readonly senders: Sender[] = [
-    { id: 1, name: 'Jhon Deo', password: '012345', role: 'sender' },
-    { id: 2, name: 'Jhon Deo', password: '012345', role: 'sender' },
-    { id: 3, name: 'Jhon Deo', password: '012345', role: 'sender' },
-    { id: 4, name: 'Jhon Deo', password: '012345', role: 'sender' },
-    { id: 5, name: 'Jhon Deo', password: '012345', role: 'sender' },
-  ];
+  private readonly senders: Sender[] = SenderDB;
 
   /**
    * authenticates a sender by credentials
