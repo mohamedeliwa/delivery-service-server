@@ -15,7 +15,7 @@ export class ParcelsService {
    */
   create(createParcelDto: CreateParcelDto): Parcel {
     try {
-      const parcel: Parcel = { id: this.lastID + 1, ...createParcelDto };
+      const parcel: Parcel = { id: this.lastID, ...createParcelDto };
       this.parcels.push(parcel);
       this.lastID += 1;
       return parcel;
@@ -33,19 +33,17 @@ export class ParcelsService {
    */
   find(findParcelDto: FindParcelDto): Parcel[] {
     try {
-      if (!findParcelDto.sender && !findParcelDto.biker) return this.parcels;
-
       let parcels = this.parcels.map((parcel) => parcel);
 
       if (findParcelDto.sender) {
         parcels = parcels.filter((parcel) => {
-          parcel.sender == findParcelDto?.sender;
+          return parcel.sender === findParcelDto.sender;
         });
       }
 
       if (findParcelDto.biker) {
         parcels = parcels.filter((parcel) => {
-          parcel?.biker == findParcelDto.biker;
+          return parcel?.biker === findParcelDto.biker;
         });
       }
       return parcels;
