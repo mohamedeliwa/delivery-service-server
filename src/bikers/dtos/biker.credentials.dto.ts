@@ -1,6 +1,6 @@
 import { IsNotEmpty, IsString } from 'class-validator';
 
-export default class SenderLoginDto {
+export default class BikerCredentialsDto {
   @IsNotEmpty()
   @IsString()
   name: string;

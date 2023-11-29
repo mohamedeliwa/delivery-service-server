@@ -9,8 +9,8 @@ import {
 } from '@nestjs/common';
 import { SendersService } from '../services/senders.service';
 import SenderParamsDto from '../dtos/sender.params.dto';
-import SenderLoginDto from '../dtos/sender.login.dto';
 import Sender from '../schemas/sender.schema';
+import SenderCredentialsDto from '../dtos/sender.credentials.dto';
 
 @UsePipes(
   new ValidationPipe({
@@ -25,7 +25,7 @@ export class SendersController {
   constructor(private readonly sendersService: SendersService) {}
 
   @Post('/login')
-  login(@Body() sender: SenderLoginDto): Sender {
+  login(@Body() sender: SenderCredentialsDto): Sender {
     return this.sendersService.login(sender);
   }
 

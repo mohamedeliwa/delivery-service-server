@@ -1,7 +1,7 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
-import SenderLoginDto from '../dtos/sender.login.dto';
 import Sender from '../schemas/sender.schema';
 import SenderDB from '../schemas/sender.db';
+import SenderCredentialsDto from '../dtos/sender.credentials.dto';
 
 @Injectable()
 export class SendersService {
@@ -16,7 +16,7 @@ export class SendersService {
    * @param password of the sender
    * @returns authenticated sender otherwise throws an error
    */
-  login({ name, password }: SenderLoginDto): Sender | undefined {
+  login({ name, password }: SenderCredentialsDto): Sender {
     const sender = this.senders.find(
       (sender) => sender.name === name && sender.password === password,
     );
@@ -32,7 +32,7 @@ export class SendersService {
    * @param id number
    * @returns sender
    */
-  getSender(id: number): Sender | undefined {
+  getSender(id: number): Sender {
     const sender = this.senders.find((sender) => sender.id == id);
     if (sender) {
       return sender;
