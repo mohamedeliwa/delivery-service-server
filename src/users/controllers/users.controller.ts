@@ -1,13 +1,10 @@
 import {
-  Body,
   Controller,
   Get,
   Param,
-  Post,
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
-import UserCredentialsDto from '../dtos/user.credentials.dto';
 import User from '../schemas/user.schema';
 import { UsersService } from '../services/users.service';
 import UserParamsDto from '../dtos/user.params.dto';
@@ -23,11 +20,6 @@ import UserParamsDto from '../dtos/user.params.dto';
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
-
-  @Post('/login')
-  login(@Body() user: UserCredentialsDto): User {
-    return this.usersService.login(user);
-  }
 
   @Get(':id')
   findOne(@Param() { id }: UserParamsDto): User {

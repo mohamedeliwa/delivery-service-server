@@ -1,7 +1,6 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import UserDB from '../schemas/user.db';
 import User from '../schemas/user.schema';
-import UserCredentialsDto from '../dtos/user.credentials.dto';
 
 @Injectable()
 export class UsersService {
@@ -9,23 +8,6 @@ export class UsersService {
    * hardcoded users database
    */
   private readonly users: User[] = UserDB;
-
-  /**
-   * authenticates a user by credentials
-   * @param name of the user
-   * @param password of the user
-   * @returns authenticated user otherwise throws an error
-   */
-  login({ name, password }: UserCredentialsDto): User {
-    const user = this.users.find(
-      (user) => user.name === name && user.password === password,
-    );
-    if (user) {
-      return user;
-    } else {
-      throw new HttpException('Wrong credentials!', HttpStatus.UNAUTHORIZED);
-    }
-  }
 
   /**
    * finds a user by id
@@ -39,5 +21,14 @@ export class UsersService {
     } else {
       throw new HttpException('User not found', HttpStatus.NOT_FOUND);
     }
+  }
+
+  /**
+   * finds a user by name
+   * @param name of the user
+   * @returns user
+   */
+  findOneByName(name: string): User | undefined {
+    return this.users.find((user) => user.name == name);
   }
 }
