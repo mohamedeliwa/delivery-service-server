@@ -5,4 +5,6 @@ export default class Parcel {
   dropoffAddress: string;
   sender: number;
   biker?: number;
+  pickedAt?: Date;
+  droppedAt?: Date;
 }

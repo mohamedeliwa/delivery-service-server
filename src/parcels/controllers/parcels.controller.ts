@@ -8,14 +8,14 @@ import {
   Query,
   UsePipes,
   ValidationPipe,
+  Request,
 } from '@nestjs/common';
 import { ParcelsService } from '../services/parcels.service';
 import CreateParcelDto from '../dtos/create.parcel.dto';
 import Parcel from '../schemas/parcel.schema';
 import FindParcelDto from '../dtos/find.parcel.dto';
 import ParcelParamsDto from '../dtos/parcel.params.dto';
-import UpdateParcelDto from '../dtos/update.parcel.dto';
-import { Role } from 'src/users/schemas/user.schema';
+import User, { Role } from 'src/users/schemas/user.schema';
 import { Roles } from 'src/authentication/decorators/roles.decorator';
 
 @UsePipes(
@@ -47,11 +47,14 @@ export class ParcelsController {
   }
 
   @Roles(Role.BIKER)
-  @Patch(':id')
-  update(
-    @Param() { id }: ParcelParamsDto,
-    @Body() updateParcelDto: UpdateParcelDto,
-  ): Parcel {
-    return this.parcelsService.update(id, updateParcelDto);
+  @Patch('pick/:id')
+  pick(@Request() req, @Param() { id }: ParcelParamsDto): Parcel {
+    return this.parcelsService.pick(id, req.user as User);
+  }
+
+  @Roles(Role.BIKER)
+  @Patch('drop/:id')
+  drop(@Request() req, @Param() { id }: ParcelParamsDto): Parcel {
+    return this.parcelsService.drop(id, req.user as User);
   }
 }

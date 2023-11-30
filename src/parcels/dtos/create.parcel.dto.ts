@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsString, IsNumber, IsOptional } from 'class-validator';
+import { IsNotEmpty, IsString, IsNumber } from 'class-validator';
 
 export default class CreateParcelDto {
   @IsNotEmpty()
@@ -16,9 +16,4 @@ export default class CreateParcelDto {
   @IsNotEmpty()
   @IsNumber()
   sender: number;
-
-  @IsOptional()
-  @IsNotEmpty()
-  @IsNumber()
-  biker?: number;
 }
