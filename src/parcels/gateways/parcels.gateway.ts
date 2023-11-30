@@ -25,11 +25,11 @@ export class ParcelsGateway
 
   @OnEvent('parcel.created')
   handleParcelCreatedEvent(parcel: Parcel) {
-    this.server.emit('parcel', parcel);
+    this.server.emit('parcel.created', parcel);
   }
 
   @OnEvent('parcel.updated')
   handleParcelUpdatedEvent(parcel: Parcel) {
-    this.server.emit('parcel', parcel);
+    this.server.emit('parcel.updated', parcel);
   }
 }
