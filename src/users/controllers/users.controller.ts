@@ -2,6 +2,7 @@ import {
   Controller,
   Get,
   Param,
+  Request,
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
@@ -20,6 +21,11 @@ import UserParamsDto from '../dtos/user.params.dto';
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
+
+  @Get('identity')
+  identity(@Request() req): User {
+    return req.user;
+  }
 
   @Get(':id')
   findOne(@Param() { id }: UserParamsDto): User {
