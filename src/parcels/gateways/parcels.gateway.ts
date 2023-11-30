@@ -8,7 +8,11 @@ import {
 import { Server } from 'socket.io';
 import Parcel from '../schemas/parcel.schema';
 
-@WebSocketGateway()
+@WebSocketGateway({
+  cors: {
+    origin: ['http://localhost:3000'],
+  },
+})
 export class ParcelsGateway
   implements OnGatewayConnection, OnGatewayDisconnect
 {
