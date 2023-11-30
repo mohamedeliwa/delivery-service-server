@@ -36,7 +36,6 @@ export class ParcelsController {
     return this.parcelsService.create(createParcelDto);
   }
 
-  @Roles(Role.BIKER)
   @Get()
   find(@Query() findParcelDto: FindParcelDto): Parcel[] {
     return this.parcelsService.find(findParcelDto);
