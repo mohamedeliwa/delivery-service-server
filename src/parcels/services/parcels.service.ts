@@ -73,26 +73,16 @@ export class ParcelsService {
    * @returns the updated parcel object or throws an error
    */
   update(parcelID: number, updateParcelDto: UpdateParcelDto): Parcel {
-    try {
-      const parcelIndex = this.parcels.findIndex(
-        (parcel) => parcel.id === parcelID,
-      );
-      if (parcelIndex === -1) {
-        throw new HttpException(
-          'No Such parcel found!',
-          HttpStatus.BAD_REQUEST,
-        );
-      }
-      this.parcels[parcelIndex] = {
-        ...this.parcels[parcelIndex],
-        ...updateParcelDto,
-      };
-      return this.parcels[parcelIndex];
-    } catch (error) {
-      throw new HttpException(
-        'Failed to update the parcel!',
-        HttpStatus.INTERNAL_SERVER_ERROR,
-      );
+    const parcelIndex = this.parcels.findIndex(
+      (parcel) => parcel.id === parcelID,
+    );
+    if (parcelIndex === -1) {
+      throw new HttpException('No Such parcel found!', HttpStatus.BAD_REQUEST);
     }
+    this.parcels[parcelIndex] = {
+      ...this.parcels[parcelIndex],
+      ...updateParcelDto,
+    };
+      return this.parcels[parcelIndex];
   }
 }
