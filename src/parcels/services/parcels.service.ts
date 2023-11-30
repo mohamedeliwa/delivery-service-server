@@ -3,9 +3,12 @@ import Parcel from '../schemas/parcel.schema';
 import CreateParcelDto from '../dtos/create.parcel.dto';
 import FindParcelDto from '../dtos/find.parcel.dto';
 import UpdateParcelDto from '../dtos/update.parcel.dto';
+import { EventEmitter2 } from '@nestjs/event-emitter';
 
 @Injectable()
 export class ParcelsService {
+  constructor(private eventEmitter: EventEmitter2) {}
+
   private readonly parcels: Parcel[] = [];
   private lastID: number = 1;
 
@@ -18,11 +21,12 @@ export class ParcelsService {
       const parcel: Parcel = { id: this.lastID, ...createParcelDto };
       this.parcels.push(parcel);
       this.lastID += 1;
+      this.eventEmitter.emit('parcel.created', parcel);
       return parcel;
     } catch (error) {
       throw new HttpException(
         'Failed to create the parcel!',
-        HttpStatus.UNAUTHORIZED,
+        HttpStatus.INTERNAL_SERVER_ERROR,
       );
     }
   }
@@ -83,6 +87,7 @@ export class ParcelsService {
       ...this.parcels[parcelIndex],
       ...updateParcelDto,
     };
-      return this.parcels[parcelIndex];
+    this.eventEmitter.emit('parcel.updated', this.parcels[parcelIndex]);
+    return this.parcels[parcelIndex];
   }
 }

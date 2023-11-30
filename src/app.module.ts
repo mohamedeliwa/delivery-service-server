@@ -6,6 +6,7 @@ import { BikersModule } from './bikers/bikers.module';
 import { ParcelsModule } from './parcels/parcels.module';
 import { UsersModule } from './users/users.module';
 import { AuthenticationModule } from './authentication/authentication.module';
+import { EventEmitterModule } from '@nestjs/event-emitter';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { AuthenticationModule } from './authentication/authentication.module';
     ParcelsModule,
     UsersModule,
     AuthenticationModule,
+    EventEmitterModule.forRoot(),
   ],
   controllers: [AppController],
   providers: [AppService],
