@@ -41,7 +41,6 @@ export class ParcelsController {
     return this.parcelsService.find(findParcelDto);
   }
 
-  @Roles(Role.SENDER)
   @Get(':id')
   findOne(@Param() { id }: ParcelParamsDto): Parcel {
     return this.parcelsService.findOne(id);
