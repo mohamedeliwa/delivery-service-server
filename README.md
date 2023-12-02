@@ -2,7 +2,7 @@
 
 ## Description
 
-A private delivery service company handles the collection and delivery of parcels for people built using Nestjs and Typescript.
+A private delivery service company handles the collection and delivery of parcels for people built using **Nestjs** and **Typescript**.
 
 ## Main Frameworks and Packages used
 
