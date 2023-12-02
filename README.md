@@ -23,6 +23,16 @@ $ npm install
 $ npm run start:dev
 ```
 
+## Authentication
+
+- All hardcoded accounts uses the same password which is `password`.
+- All senders accounts' names starts with `sender_*`.
+  > - refers to the number of the sender, we have 5 sender.
+  > - an example of sender account `name: sender_1` and `password: password`.
+- All bikers accounts' names starts with `biker_*`,
+  > - refers to the number of the biker, we have 10 bikers.
+- A list of the hardcoded accounts will be found in `src\users\schemas\user.db.ts`
+
 ## Fulfilled Requirements
 
 - [x] A sender should be able to create a parcel to be delivered by specifying pick-up and drop-off address (should be just a text field, no need for address validation).
@@ -33,10 +43,16 @@ $ npm run start:dev
 - [x] A biker should be able to input the timestamp of the pickup and the delivery for each order.
 - [x] The status of the order should be updated for the sender.
 
-# Extra Features added
+## Extra Features added
 
 - [x] **Web-Socket** connections to update senders and bikers with parcels status in realtime.
 - [x] **JWT Authentication** for senders and bikers.
 - [x] **Role Based Authorization** to control what senders and bikers can and can not do.
 - [x] **Data Validation and Sanitaion** to prevent any misuse to the app services.
 - [x] **Data Transforming** to ensure valid, and safe data types are provided to our application.
+
+## Postman Collection
+
+added to describe the APIs of the service. <br />
+you will find it in the root project directory. <br />
+`delivery_service.postman_collection.json`
