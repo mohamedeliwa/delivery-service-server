@@ -1,0 +1,252 @@
+{
+	"info": {
+		"_postman_id": "1abc9c18-a627-46e0-842e-423d9ae21305",
+		"name": "delivery_service",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30289943"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "User Identity",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/users/identity",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"identity"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find User",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/users/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1",
+									"description": "id of the user to find"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Parcels",
+			"item": [
+				{
+					"name": "Find Parcels",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/parcels/?sender=2&biker=1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"parcels",
+								""
+							],
+							"query": [
+								{
+									"key": "sender",
+									"value": "2",
+									"description": "id of the sender who created the parcel"
+								},
+								{
+									"key": "biker",
+									"value": "1",
+									"description": "id the biker who picked up the parcel"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Parcel",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"new parcel\",\r\n    \"pickupAddress\":\"London\",\r\n    \"dropoffAddress\": \"NY City\",\r\n    \"sender\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/parcels/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"parcels",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find Parcel",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/parcels/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"parcels",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1",
+									"description": "id of the parcel to find"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pick Parcel",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/parcels/pick/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"parcels",
+								"pick",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Drop Parcel",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/parcels/drop/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"parcels",
+								"drop",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"sender_1\",\r\n    \"password\": \"password\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/authentication/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"authentication",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjYsIm5hbWUiOiJiaWtlcl8xIiwiaWF0IjoxNzAxNTIzNzkyfQ.ws6FZYsZnO4BW6ecrj8pQFd3r39qa0Yzz7aNcFUMbx4",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "http://localhost:3000",
+			"type": "string"
+		}
+	]
+}
