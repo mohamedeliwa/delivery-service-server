@@ -2,14 +2,14 @@
 
 ## Description
 
-A private delivery service company handles the collection and delivery of parcels for people.
+A private delivery service company handles the collection and delivery of parcels for people built using Nestjs and Typescript.
 
-## Main Frameworks and Packages
+## Main Frameworks and Packages used
 
 - **Nestjs** a framework for building server-side applications.
 - **Expressjs** used as the underlying HTTP Server for nestjs.
 - **Socket.io** used as the underlying web-socket platform for nestjs.
-- **class-validator** for validating incoming datatypes through http requests.
+- **class-validator** for validating incoming data types through http requests.
 - **class-transformer** for safely transforming incoming data into the proper data types the application expects.
 
 ## Running the app
